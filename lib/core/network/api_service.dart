@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:tourist_website/core/models/tour_model.dart';
 import 'package:tourist_website/core/network/api_constant.dart';
+import 'package:tourist_website/features/home/data/models/categories_model.dart';
 import 'package:tourist_website/features/transportation_Booking/data/models/transportation_model.dart';
 
 class ApiService {
@@ -93,6 +94,20 @@ class ApiService {
       }
     } catch (e) {
       throw Exception('There was an error, Please Try later!: $e');
+    }
+  }
+
+  Future<List<CategoriesModel>> getCategories() async {
+    final Response response = await dio.get("${baseUrl}categories/active");
+    final dataList = response.data['data'];
+    if (dataList is List) {
+      return List<CategoriesModel>.from(
+        dataList.map((x) {
+          return CategoriesModel.fromJson(x);
+        }),
+      );
+    } else {
+      throw Exception('Invalid data format');
     }
   }
 }

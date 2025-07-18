@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:tourist_website/core/models/tour_model.dart';
 import 'package:tourist_website/features/home/domain/usecases/get_all_tours_usecase.dart';
 
-part 'get_best_saller_state.dart';
+part 'get_all_tours_state.dart';
 
 class GetAllToursCubit extends Cubit<GetAllToursState> {
   final GetAllToursUseCase getAllToursUseCase;

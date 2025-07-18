@@ -6,8 +6,9 @@ import 'package:tourist_website/core/models/images_model.dart';
 import 'package:tourist_website/core/network/api_service.dart';
 import 'package:tourist_website/features/home/data/repos/all_tours_repository_impl.dart';
 import 'package:tourist_website/features/home/domain/usecases/get_all_tours_usecase.dart';
-import 'package:tourist_website/features/home/presentation/manager/best_salle_cubit/get_best_saller_cubit.dart';
+import 'package:tourist_website/features/home/presentation/manager/get_all_tours_cubit/get_all_tours_cubit.dart';
 import 'package:tourist_website/features/home/presentation/lists/category_list_view.dart';
+import 'package:tourist_website/features/home/presentation/manager/get_categories/get_categories_cubit.dart';
 import 'package:tourist_website/features/home/presentation/widgets/cursor_slider.dart';
 import 'package:tourist_website/features/home/presentation/widgets/footer_section.dart';
 import 'package:tourist_website/features/home/presentation/lists/list_tours.dart';
@@ -59,13 +60,22 @@ class _HomePageState extends State<HomePage> {
       drawer: CustomDrawer(
         footerKey: _footerKey,
       ), // Add CustomDrawer for mobile
-      body: BlocProvider(
-        create:
-            (context) => GetAllToursCubit(
-              GetAllToursUseCase(
-                GetAllToursRepoImpl(apiService: ApiService(Dio())),
-              ),
-            )..getAllTours(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create:
+                (context) => GetAllToursCubit(
+                  GetAllToursUseCase(
+                    GetAllToursRepoImpl(apiService: ApiService(Dio())),
+                  ),
+                )..getAllTours(),
+          ),
+          BlocProvider(
+            create:
+                (context) =>
+                    GetCategoriesCubit(ApiService(Dio()))..getCategories(),
+          ),
+        ],
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
@@ -111,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 const SizedBox(height: 12),
-                                CustomCategoryListView(tours: tours),
+                                CustomCategoryListView(),
                                 const SizedBox(height: 20),
                                 const Text(
                                   "Explore Your Favorite Trips",

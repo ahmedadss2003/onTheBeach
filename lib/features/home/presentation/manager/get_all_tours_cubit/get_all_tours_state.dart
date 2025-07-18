@@ -1,4 +1,4 @@
-part of 'get_best_saller_cubit.dart';
+part of 'get_all_tours_cubit.dart';
 
 @immutable
 sealed class GetAllToursState {}

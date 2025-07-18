@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_website/core/models/tour_model.dart';
 import 'package:tourist_website/core/widgets/trip_card.dart';
-import 'package:tourist_website/features/home/presentation/manager/best_salle_cubit/get_best_saller_cubit.dart';
+import 'package:tourist_website/features/home/presentation/manager/get_all_tours_cubit/get_all_tours_cubit.dart';
 import 'package:tourist_website/features/place_detials/presentation/manager/best_saller_cubit/best_salle_cubit.dart';
 
 class CustomBestSallerTourGridView extends StatelessWidget {

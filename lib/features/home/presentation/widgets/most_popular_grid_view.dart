@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_website/core/models/tour_model.dart';
 import 'package:tourist_website/core/widgets/trip_card.dart';
-import 'package:tourist_website/features/home/presentation/manager/best_salle_cubit/get_best_saller_cubit.dart';
+import 'package:tourist_website/features/home/presentation/manager/get_all_tours_cubit/get_all_tours_cubit.dart';
 
 class CustomMostPopularGridView extends StatelessWidget {
   const CustomMostPopularGridView({super.key});
