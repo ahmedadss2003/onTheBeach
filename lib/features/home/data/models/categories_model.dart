@@ -13,10 +13,13 @@ class CategoriesModel {
 
   factory CategoriesModel.fromJson(Map<String, dynamic> json) {
     return CategoriesModel(
-      id: json['id'] as int,
-      categoryName: json['category_name'] as String,
-      description: json['description'] as String?,
-      image: json['image'] as String?,
+      id:
+          json['id'] is int
+              ? json['id']
+              : int.tryParse(json['id'].toString()) ?? 0, // ✅ الحماية هنا
+      categoryName: json['category_name'] ?? '',
+      description: json['description'],
+      image: json['image'],
     );
   }
 

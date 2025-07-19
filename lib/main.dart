@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tourist_website/core/helper_function/app_router.dart';
-import 'package:tourist_website/core/helper_function/helper_function.dart';
 import 'package:tourist_website/core/widgets/up_arrow.dart';
 import 'package:tourist_website/core/widgets/whatsApp_floating_button%20.dart';
-import 'package:tourist_website/features/home/presentation/home_view.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() {
+  setUrlStrategy(PathUrlStrategy());
   runApp(const SharmElSheikhApp());
 }
 

@@ -48,10 +48,7 @@ class _CategoryTourCardState extends State<CategoryTourCard> {
                   onTap: () {
                     context.go(
                       DiscoverPlacesView.routeName,
-                      extra: {
-                        'categoryName': widget.categoriesModel.categoryName,
-                        'imageUrl': widget.categoriesModel.image,
-                      },
+                      extra: widget.categoriesModel.toJson(),
                     );
                   },
                   child:
