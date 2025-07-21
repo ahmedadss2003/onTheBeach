@@ -1,8 +1,7 @@
-# tourist_website
+# On The Beach website
 
-A new Flutter project.
 
-## Getting Started
+## Descriptions
 
 On The Beach is a responsive tourism and booking Flutter application built for exploring and booking tours and transportation services in Sharm El-Sheikh, Egypt.
 It features a modern UI, category-based recommendations, booking capabilities, and integration with backend APIs.
