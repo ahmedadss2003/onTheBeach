@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomNumberSelector extends StatelessWidget {
+class NumberField extends StatelessWidget {
   final String label;
   final int value;
   final Function(int) onChanged;
 
-  const CustomNumberSelector({
+  const NumberField({
     super.key,
     required this.label,
     required this.value,
