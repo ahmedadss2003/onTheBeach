@@ -31,7 +31,7 @@ class HowBookingSection extends StatelessWidget {
                 maxLines: 3,
 
                 textAlign: TextAlign.center,
-                "Just fill out the order form on the tour page, and then click the “Book This tour” button. Once you do this, we will send you a confirmation email that your reservation has been confirmed in accordance with the information you sent us. Or contact us by phone. +201099969068(viber, whatsapp, telegram)",
+                "Just fill in the Booking form on the tour page, and then click the “Book This tour” button. Once you do this, we will send you a confirmation email that your reservation has been confirmed in accordance with the information you sent us. Or We Confirm With You Via WhatsApp. and U can Contact Us Via Whatsapp on this number (+201004536956).",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,

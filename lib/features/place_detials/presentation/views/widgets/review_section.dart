@@ -133,7 +133,7 @@ class ReviewsSection extends StatelessWidget {
     ),
     ReviewCardData(
       icon: Icons.savings_rounded,
-      title: 'Deposits from £30pp',
+      title: 'No Deposits Required',
       subtitle: 'Payment plans with no fees',
       description: 'Flexible payment options available',
       backgroundColor: Color(0xFF1a73e8),

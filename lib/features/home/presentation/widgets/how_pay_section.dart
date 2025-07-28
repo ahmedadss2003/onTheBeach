@@ -22,7 +22,7 @@ class HowPaySection extends StatelessWidget {
             maxLines: 3,
 
             textAlign: TextAlign.center,
-            "You don’t have to pay until you are here in Sharm El Sheikh already, we will send you our representative to your hotel to give you the receipts and collect the money before your excursions Cash or by Credit Card with add 3% on Total Payment.Or you can visit us at our office",
+            "You don’t have to pay until you are here in Sharm El Sheikh , we will send you our representative to Meet You at your hotel to give you the Full details for the excursions and collect the money before your excursions Cash or by Credit Card with add 5% on Total Payment.Or you can visit us at our office",
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
