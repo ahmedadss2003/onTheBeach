@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourist_website/features/home/presentation/home_view.dart';
@@ -60,18 +61,25 @@ class SplashScreenState extends State<SplashScreen>
               builder: (context, child) {
                 return Transform.scale(
                   scale: _scaleAnimation.value,
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    width: 300,
-                    height: 200,
+                  child: AutoSizeText(
+                    "Welcome to Sharm El Sheikh Tours",
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xfffedc07),
+                    ),
                   ),
                 );
               },
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Welcome to Sharm El Sheikh Tours',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            const AutoSizeText(
+              'Take a look at our offers',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w300,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

@@ -12,3 +12,4 @@ class BestSallRepoImpl implements BestSallRepo {
     return apiService.getBestSallerTours();
   }
 }
+

@@ -11,7 +11,6 @@ import 'package:tourist_website/features/home/presentation/lists/category_list_v
 import 'package:tourist_website/features/home/presentation/manager/get_categories/get_categories_cubit.dart';
 import 'package:tourist_website/features/home/presentation/widgets/cursor_slider.dart';
 import 'package:tourist_website/features/home/presentation/widgets/footer_section.dart';
-import 'package:tourist_website/features/home/presentation/lists/list_tours.dart';
 import 'package:tourist_website/features/home/presentation/widgets/home_appbar.dart';
 import 'package:tourist_website/features/home/presentation/widgets/how_pay_section.dart';
 import 'package:tourist_website/features/home/presentation/widgets/most_popular_grid_view.dart';
@@ -30,6 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _footerKey = GlobalKey();
+  bool seeAll = false;
 
   @override
   void initState() {
@@ -132,18 +132,36 @@ class _HomePageState extends State<HomePage> {
                                 ),
 
                                 const SizedBox(height: 8),
-                                const AutoSizeText(
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  "Discover our most popular excursions",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8D9199),
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Spacer(),
+                                    const AutoSizeText(
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      "Discover our most popular excursions",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xFF8D9199),
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    // TextButton(
+                                    //   onPressed: () {
+                                    //     setState(() {
+                                    //       seeAll = !seeAll;
+                                    //     });
+                                    //   },
+                                    //   child:
+                                    //       seeAll
+                                    //           ? Text("See Less")
+                                    //           : Text("See All"),
+                                    // ),
+                                  ],
                                 ),
                                 const SizedBox(height: 12),
-                                const CustomMostPopularGridView(),
+                                CustomMostPopularGridView(seeAll: seeAll),
                               ],
                             ),
                           ),

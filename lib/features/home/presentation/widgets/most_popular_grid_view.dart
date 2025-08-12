@@ -5,8 +5,8 @@ import 'package:tourist_website/core/widgets/trip_card.dart';
 import 'package:tourist_website/features/home/presentation/manager/get_all_tours_cubit/get_all_tours_cubit.dart';
 
 class CustomMostPopularGridView extends StatelessWidget {
-  const CustomMostPopularGridView({super.key});
-
+  final bool seeAll;
+  const CustomMostPopularGridView({super.key, required this.seeAll});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllToursCubit, GetAllToursState>(
@@ -26,7 +26,7 @@ class CustomMostPopularGridView extends StatelessWidget {
                   mainAxisSpacing: 15,
                   childAspectRatio: _getChildAspectRatio(constraints.maxWidth),
                 ),
-                itemCount: tours.length,
+                itemCount: 12,
                 itemBuilder: (context, index) {
                   return TripCard(
                     tourModel: tours[index],

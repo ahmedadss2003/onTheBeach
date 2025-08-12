@@ -127,7 +127,7 @@ class ContactUsScreen extends StatelessWidget {
           '123 Travel Street, Sharm El Sheikh, Egypt',
         ),
         _buildContactItem(Icons.email, 'info@toursite.com'),
-        _buildContactItem(Icons.phone, '+20 123 456 7890'),
+        _buildContactItem(Icons.phone, '+20 111 377 2808'),
         _buildContactItem(Icons.access_time, 'Mon-Fri: 9:00 AM - 6:00 PM'),
       ],
     );
