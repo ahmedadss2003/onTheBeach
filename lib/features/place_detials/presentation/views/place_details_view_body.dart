@@ -528,7 +528,10 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.grey[50]!, Colors.white],
+          colors:
+              Theme.of(context).brightness == Brightness.light
+                  ? [Colors.grey[50]!, Colors.white]
+                  : [Colors.black, Colors.black],
         ),
       ),
       child:
@@ -692,9 +695,9 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildStatItem(Icons.access_time, timeHour, 'Duration'),
-              _buildStatItem(Icons.groups, '$tourAge+', 'Minimum Age'),
+              // _buildStatItem(Icons.groups, '$tourAge+', 'Minimum Age'),
               _buildStatItem(Icons.calendar_month, "All Year", 'Available'),
-              _buildStatItem(Icons.people, maxGroup, 'Group Size'),
+              // _buildStatItem(Icons.people, maxGroup, 'Group Size'),
             ],
           ),
         ),
@@ -1057,7 +1060,7 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    'Book This Adventure',
+                    'Book This Tour',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -1177,7 +1180,7 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
                               ),
                               const SizedBox(width: 8),
                               const Text(
-                                'Book Your Adventure',
+                                'Book Your Tour',
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,

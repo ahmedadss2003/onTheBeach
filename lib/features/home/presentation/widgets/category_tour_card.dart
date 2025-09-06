@@ -231,7 +231,9 @@ class _CategoryTourCardState extends State<CategoryTourCard> {
             children: [
               Text(
                 widget.categoriesModel.categoryName,
-                style: const TextStyle(color: Color(0xFF5C748A), fontSize: 14),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge!.copyWith(fontSize: 14),
               ),
               const SizedBox(height: 4),
               const SizedBox(height: 8),
@@ -287,8 +289,7 @@ class _CategoryTourCardState extends State<CategoryTourCard> {
                 children: [
                   Text(
                     widget.categoriesModel.categoryName,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 5, 12, 19),
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                       fontSize: 28,
                       fontWeight: FontWeight.w400,
                     ),

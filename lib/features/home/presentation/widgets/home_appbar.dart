@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_website/features/home/presentation/widgets/contact_us.dart';
-import 'package:tourist_website/features/transportation_Booking/presentation/transporation_Booking_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourist_website/core/theming/them_cubit/them_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final bool isMobile = MediaQuery.of(context).size.width < 850;
-
+    final themeCubit = context.read<ThemeCubit>();
     return AppBar(
       toolbarHeight: 100,
       centerTitle: isMobile ? true : false,
@@ -64,7 +64,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ],
               ),
-      backgroundColor: Color(0xfffedc07),
+      backgroundColor: Color.fromARGB(255, 255, 227, 45),
       elevation: 1,
       bottom: const PreferredSize(
         preferredSize: Size.fromHeight(1),
@@ -84,6 +84,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   onTap: () => _scrollToFooter(context),
                 ),
                 SizedBox(width: 16),
+                // IconButton(
+                //   onPressed: () => themeCubit.toggleTheme(),
+                //   icon: Icon(
+                //     context.watch<ThemeCubit>().state == ThemeMode.light
+                //         ? Icons.dark_mode
+                //         : Icons.light_mode,
+                //   ),
+                // ),
               ],
     );
   }
@@ -156,7 +164,7 @@ class _NavLinkState extends State<NavLink> with SingleTickerProviderStateMixin {
                 color:
                     _isHovered
                         ? Color.fromARGB(255, 142, 155, 162)
-                        : Color(0xFF101518),
+                        : Color.fromARGB(255, 36, 49, 58),
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
@@ -180,36 +188,6 @@ class CustomDrawer extends StatelessWidget {
       alignment: 0.0,
       duration: const Duration(milliseconds: 700),
       curve: Curves.easeInOut,
-    );
-  }
-
-  void _navigateToContactUs(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder:
-            (context, animation, secondaryAnimation) => const ContactUsScreen(),
-        transitionsBuilder:
-            (context, animation, secondaryAnimation, child) =>
-                FadeTransition(opacity: animation, child: child),
-        transitionDuration: const Duration(milliseconds: 500),
-      ),
-    );
-  }
-
-  void _navigateToTransportation(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder:
-            (context, animation, duration) => TransporationBookingView(),
-        transitionsBuilder:
-            (context, animation, secondaryAnimation, child) =>
-                FadeTransition(opacity: animation, child: child),
-        transitionDuration: Duration(milliseconds: 500),
-      ),
     );
   }
 

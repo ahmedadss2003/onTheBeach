@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:tourist_website/features/home/data/models/categories_model.dart';
 import 'package:tourist_website/features/home/presentation/manager/get_categories/get_categories_cubit.dart';
 import 'package:tourist_website/features/home/presentation/widgets/category_tour_card.dart';
@@ -12,8 +13,13 @@ class CustomCategoryListView extends StatelessWidget {
     return BlocBuilder<GetCategoriesCubit, GetCategoriesState>(
       builder: (context, state) {
         if (state is GetCategoriesLoading) {
-          return const Center(
-            child: CircularProgressIndicator(), // Show loading indicator
+          return Center(
+            child: LoadingAnimationWidget.flickr(
+              // color: Colors.purple,
+              leftDotColor: Colors.purple,
+              rightDotColor: Colors.cyan,
+              size: 100,
+            ),
           );
         } else if (state is GetCategoriesSuccess) {
           final List<CategoriesModel> categories = state.categories;

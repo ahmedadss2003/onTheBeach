@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_website/core/models/images_model.dart';
 import 'package:tourist_website/core/network/api_service.dart';
+import 'package:tourist_website/core/widgets/footer.dart';
 import 'package:tourist_website/features/home/data/repos/all_tours_repository_impl.dart';
 import 'package:tourist_website/features/home/domain/usecases/get_all_tours_usecase.dart';
 import 'package:tourist_website/features/home/presentation/manager/get_all_tours_cubit/get_all_tours_cubit.dart';
@@ -103,10 +104,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Column(
                               children: [
-                                const Text(
+                                Text(
                                   'Sharm El Sheikh Excursions & Tours & Best Things To Do',
-                                  style: TextStyle(
-                                    color: Color(0xFF101518),
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.bodyLarge?.copyWith(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w900,
                                   ),
@@ -176,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                     ReviewsSection(width: constraints.maxWidth),
                     const SizedBox(height: 20),
 
-                    KeyedSubtree(key: _footerKey, child: const FooterSection()),
+                    KeyedSubtree(key: _footerKey, child: const Footer()),
                   ],
                 ),
               ),

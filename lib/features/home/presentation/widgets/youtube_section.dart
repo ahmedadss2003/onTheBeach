@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import 'dart:html' show IFrameElement;
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'package:flutter/foundation.dart';

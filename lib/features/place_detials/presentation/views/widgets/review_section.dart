@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class ReviewsSection extends StatelessWidget {
   final double width;
+  final Color color = const Color.fromARGB(255, 98, 44, 25);
 
   const ReviewsSection({super.key, required this.width});
 
@@ -116,7 +117,7 @@ class ReviewsSection extends StatelessWidget {
       title: 'Trustpilot',
       subtitle: 'TrustScore 4.3 | 76,536 reviews',
       description: "We're trusted by our customers",
-      backgroundColor: Color(0xFF1a73e8),
+      backgroundColor: const Color.fromARGB(255, 98, 44, 25),
       iconColor: Colors.white,
       showStars: true,
       rating: 4.5,
@@ -126,7 +127,7 @@ class ReviewsSection extends StatelessWidget {
       title: 'SECURE YOUR ACCOUNT',
       subtitle: 'Your money is protected',
       description: 'Safe and secure payment processing',
-      backgroundColor: Color(0xFF1a73e8),
+      backgroundColor: const Color.fromARGB(255, 98, 44, 25),
       iconColor: Colors.white,
       showStars: false,
       rating: 0.0,
@@ -136,17 +137,17 @@ class ReviewsSection extends StatelessWidget {
       title: 'No Deposits Required',
       subtitle: 'Payment plans with no fees',
       description: 'Flexible payment options available',
-      backgroundColor: Color(0xFF1a73e8),
+      backgroundColor: const Color.fromARGB(255, 98, 44, 25),
       iconColor: Colors.white,
       showStars: false,
       rating: 0.0,
     ),
     ReviewCardData(
-      icon: Icons.home_rounded,
-      title: 'The home of holiday perks',
-      subtitle: 'Exclusive benefits for members',
-      description: 'Special offers and rewards',
-      backgroundColor: Color(0xFF1a73e8),
+      icon: Icons.book_rounded,
+      title: 'easy Booking',
+      subtitle: 'Quick and easy booking',
+      description: 'Easy and hassle-free booking experience',
+      backgroundColor: const Color.fromARGB(255, 98, 44, 25),
       iconColor: Colors.white,
       showStars: false,
       rating: 0.0,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_website/core/widgets/footer.dart';
 import 'package:tourist_website/features/discover_places_by_category/presentation/widgets/discover_places_gridview.dart';
 import 'package:tourist_website/features/discover_places_by_category/presentation/widgets/image_section.dart';
-import 'package:tourist_website/features/home/presentation/widgets/footer_section.dart';
 
 class DiscoverPlacesViewBody extends StatelessWidget {
   const DiscoverPlacesViewBody({
@@ -34,9 +34,8 @@ class DiscoverPlacesViewBody extends StatelessWidget {
                     categoryName: categoryName,
                   ),
                 ),
-
                 const SizedBox(height: 20),
-                const FooterSection(),
+                const Footer(),
               ],
             ),
           );

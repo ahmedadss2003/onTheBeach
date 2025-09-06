@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:tourist_website/core/models/tour_model.dart';
 import 'package:tourist_website/core/widgets/trip_card.dart';
 import 'package:tourist_website/features/home/presentation/manager/get_all_tours_cubit/get_all_tours_cubit.dart';
@@ -12,7 +13,13 @@ class CustomMostPopularGridView extends StatelessWidget {
     return BlocBuilder<GetAllToursCubit, GetAllToursState>(
       builder: (context, state) {
         if (state is GetAllTourLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+            child: LoadingAnimationWidget.flickr(
+              leftDotColor: Colors.purple,
+              rightDotColor: Colors.cyan,
+              size: 100,
+            ),
+          );
         } else if (state is GetAllTourSuccess) {
           final List<TourModel> tours = state.tourList;
           return LayoutBuilder(
@@ -26,7 +33,7 @@ class CustomMostPopularGridView extends StatelessWidget {
                   mainAxisSpacing: 15,
                   childAspectRatio: _getChildAspectRatio(constraints.maxWidth),
                 ),
-                itemCount: 12,
+                itemCount: 10,
                 itemBuilder: (context, index) {
                   return TripCard(
                     tourModel: tours[index],
