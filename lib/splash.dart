@@ -1,89 +1,89 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:tourist_website/features/home/presentation/home_view.dart';
+// import 'package:auto_size_text/auto_size_text.dart';
+// import 'package:flutter/material.dart';
+// import 'package:go_router/go_router.dart';
+// import 'package:tourist_website/features/home/presentation/home_view.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-  static const String routeName = '/splash';
+// class SplashScreen extends StatefulWidget {
+//   const SplashScreen({super.key});
+//   static const String routeName = '/splash';
 
-  @override
-  SplashScreenState createState() => SplashScreenState();
-}
+//   @override
+//   SplashScreenState createState() => SplashScreenState();
+// }
 
-class SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
+// class SplashScreenState extends State<SplashScreen>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _controller;
+//   late Animation<double> _scaleAnimation;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = AnimationController(
+//       vsync: this,
+//       duration: const Duration(seconds: 2),
+//     );
 
-    _scaleAnimation = Tween<double>(
-      begin: 0.5,
-      end: 1.5,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+//     _scaleAnimation = Tween<double>(
+//       begin: 0.5,
+//       end: 1.5,
+//     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.reverse().then((_) {
-          if (mounted) {
-            context.go(HomePage.routeName);
-          }
-        });
-      }
-    });
+//     _controller.addStatusListener((status) {
+//       if (status == AnimationStatus.completed) {
+//         _controller.reverse().then((_) {
+//           if (mounted) {
+//             context.go(HomePage.routeName);
+//           }
+//         });
+//       }
+//     });
 
-    _controller.forward();
-  }
+//     _controller.forward();
+//   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 98, 123, 135),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedBuilder(
-              animation: _scaleAnimation,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _scaleAnimation.value,
-                  child: AutoSizeText(
-                    "Welcome to Sharm El Sheikh Tours",
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xfffedc07),
-                    ),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            const AutoSizeText(
-              'Take a look at our offers',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w300,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: const Color.fromARGB(255, 98, 123, 135),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             AnimatedBuilder(
+//               animation: _scaleAnimation,
+//               builder: (context, child) {
+//                 return Transform.scale(
+//                   scale: _scaleAnimation.value,
+//                   child: AutoSizeText(
+//                     "Welcome to Sharm El Sheikh Tours",
+//                     style: const TextStyle(
+//                       fontSize: 24,
+//                       fontWeight: FontWeight.bold,
+//                       color: Color(0xfffedc07),
+//                     ),
+//                   ),
+//                 );
+//               },
+//             ),
+//             const SizedBox(height: 20),
+//             const AutoSizeText(
+//               'Take a look at our offers',
+//               style: TextStyle(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.w300,
+//                 color: Colors.white,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

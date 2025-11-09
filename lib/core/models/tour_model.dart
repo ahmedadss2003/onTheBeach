@@ -47,43 +47,92 @@ class TourModel {
     required this.images,
   });
 
-factory TourModel.fromJson(Map<String, dynamic> json) {
-  return TourModel(
-    id: json['id'] ?? 0,
-    title: json['title'] ?? '',
-    description: json['description'] ?? '',
-    status: json['status'],
-    timeOfTour: json['time_of_tour'],
-    ageRequirement: json['age_requirement'],
-    availability: json['availability'] ?? '',
-    numberOfPeople: json['number_of_people'] ?? 0,
-    departureTime: json['departure_time'],
-    returnTime: json['return_time'],
-    priceAdult: json['price_adult'] ?? 0,
-    priceChild: json['price_child'] ?? 0,
-    discount: json['discount'] ?? 0,
-    createdAt: json['created_at'] ?? '',
-    updatedAt: json['updated_at'] ?? '',
-    youtubeVideoUrl: json['youtube_video_url'],
-    includes: (json['includes'] as List<dynamic>?)
-            ?.map((x) => ServiceItem.fromJson(x))
-            .toList() ??
-        [],
-    notIncludes: (json['not_includes'] as List<dynamic>?)
-            ?.map((x) => ServiceItem.fromJson(x))
-            .toList() ??
-        [],
-    categories: (json['categories'] as List<dynamic>?)
-            ?.map((x) => CategoryModel.fromJson(x))
-            .toList() ??
-        [],
-    images: (json['images'] as List<dynamic>?)
-            ?.map((x) => TourImage.fromJson(x))
-            .toList() ??
-        [],
-  );
-}
+  factory TourModel.fromJson(Map<String, dynamic> json) {
+    return TourModel(
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      description: json['description'] ?? '',
+      status: json['status'],
+      timeOfTour: json['time_of_tour'],
+      ageRequirement: json['age_requirement'],
+      availability: json['availability'] ?? '',
+      numberOfPeople: json['number_of_people'] ?? 0,
+      departureTime: json['departure_time'],
+      returnTime: json['return_time'],
+      priceAdult: json['price_adult'] ?? 0,
+      priceChild: json['price_child'] ?? 0,
+      discount: json['discount'] ?? 0,
+      createdAt: json['created_at'] ?? '',
+      updatedAt: json['updated_at'] ?? '',
+      youtubeVideoUrl: json['youtube_video_url'],
+      includes:
+          (json['includes'] as List<dynamic>?)
+              ?.map((x) => ServiceItem.fromJson(x))
+              .toList() ??
+          [],
+      notIncludes:
+          (json['not_includes'] as List<dynamic>?)
+              ?.map((x) => ServiceItem.fromJson(x))
+              .toList() ??
+          [],
+      categories:
+          (json['categories'] as List<dynamic>?)
+              ?.map((x) => CategoryModel.fromJson(x))
+              .toList() ??
+          [],
+      images:
+          (json['images'] as List<dynamic>?)
+              ?.map((x) => TourImage.fromJson(x))
+              .toList() ??
+          [],
+    );
+  }
+  factory TourModel.fromSlug(String slug) {
+    // هنا بتعمل mapping بين الـ slug و بيانات الرحلة المناسبة
+    switch (slug) {
+      case 'windsurf':
+        return TourModel(
+          id: 1,
+          title: 'Windsurf Adventure',
+          description:
+              'Experience the thrill of windsurfing with professional instructors!',
+          availability: 'Available Daily',
+          numberOfPeople: 10,
+          departureTime: '9:00 AM',
+          returnTime: '1:00 PM',
+          priceAdult: 100,
+          priceChild: 70,
+          discount: 10,
+          createdAt: '',
+          updatedAt: '',
+          includes: [],
+          notIncludes: [],
+          categories: [],
+          images: [],
+        );
 
+      // تقدر تضيف رحلات تانية هنا بنفس الفكرة
+      default:
+        return TourModel(
+          id: 0,
+          title: 'Unknown Tour',
+          description: 'Tour not found for this slug.',
+          availability: '',
+          numberOfPeople: 0,
+          departureTime: '',
+          returnTime: '',
+          priceAdult: 0,
+          priceChild: 0,
+          discount: 0,
+          createdAt: '',
+          updatedAt: '',
+          includes: [],
+          notIncludes: [],
+          categories: [],
+          images: [],
+        );
+    }
+  }
 
   Map<String, dynamic> toJson() => {
     'id': id,

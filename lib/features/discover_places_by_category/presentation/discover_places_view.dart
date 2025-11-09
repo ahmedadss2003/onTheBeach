@@ -12,10 +12,12 @@ class DiscoverPlacesView extends StatelessWidget {
     super.key,
     required this.categoryName,
     required this.imageUrl,
+    this.categoryId,
   });
   static const routeName = "/discover_places";
   final String categoryName;
   final String imageUrl;
+  final String? categoryId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

@@ -22,6 +22,30 @@ class ApiService {
     }
   }
 
+  Future<TourModel> getTourById(int id) async {
+    try {
+      // ✅ جيب كل الـ tours
+      final Response response = await dio.get("${baseUrl}tours");
+
+      if (response.statusCode == 200 && response.data['status'] == true) {
+        final dataList = response.data['data'] as List;
+
+        // ✅ فلتر بالـ ID
+        final tourData = dataList.firstWhere(
+          (tour) => tour['id'] == id,
+          orElse: () => throw Exception('Tour not found'),
+        );
+
+        return TourModel.fromJson(tourData);
+      } else {
+        throw Exception('Failed to load tours');
+      }
+    } catch (e) {
+      print("❌ Error: $e");
+      throw Exception('Failed to fetch tour: $e');
+    }
+  }
+
   Future<List<TourModel>> getBestSallerTours() async {
     final Response response = await dio.get("${baseUrl}best-seller-tours");
     final dataList = response.data['data'];
@@ -46,6 +70,20 @@ class ApiService {
       return List<TourModel>.from(dataList.map((x) => TourModel.fromJson(x)));
     } else {
       throw Exception('Invalid data format');
+    }
+  }
+
+  Future<CategoriesModel> getCategoryById(int id) async {
+    try {
+      final Response response = await dio.get("${baseUrl}categories/$id");
+
+      if (response.statusCode == 200 && response.data['status'] == true) {
+        return CategoriesModel.fromJson(response.data['data']);
+      } else {
+        throw Exception('Category not found');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch category: $e');
     }
   }
 

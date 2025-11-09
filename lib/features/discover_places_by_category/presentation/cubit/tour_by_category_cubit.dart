@@ -6,17 +6,16 @@ import 'package:tourist_website/features/discover_places_by_category/domain/usec
 part 'tour_by_category_state.dart';
 
 class TourByCategoryCubit extends Cubit<TourByCategoryState> {
-  final GetToursByCategoryUsecase toursByCategoryUsecase ;
-  TourByCategoryCubit(this.toursByCategoryUsecase) : super(TourByCategoryInitial());
-  void getTourByCategory (String keyword)async{
+  final GetToursByCategoryUsecase toursByCategoryUsecase;
+  TourByCategoryCubit(this.toursByCategoryUsecase)
+    : super(TourByCategoryInitial());
+  void getTourByCategory(String keyword) async {
     emit(TourByCategoryLoading());
-    try{
+    try {
       final tours = await toursByCategoryUsecase.call(keyword);
       emit(TourByCategorySuccess(tours));
-    }catch(e){
+    } catch (e) {
       emit(TourByCategoryError(e.toString()));
     }
-    
   }
-
 }

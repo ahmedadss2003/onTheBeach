@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tourist_website/core/theming/them_cubit/them_cubit.dart';
+import 'package:tourist_website/features/about_us/aboout_us.dart';
+import 'package:tourist_website/features/why_choose_us/why_choose_us.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -21,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobile = MediaQuery.of(context).size.width < 850;
+    final bool isMobile = MediaQuery.of(context).size.width < 1000;
     final themeCubit = context.read<ThemeCubit>();
     return AppBar(
       toolbarHeight: 100,
@@ -81,7 +84,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 // ),
                 NavLink(
                   text: 'About Us',
-                  onTap: () => _scrollToFooter(context),
+                  onTap: () => context.go(AboutUs.routeName),
+                ),
+                NavLink(
+                  text: 'why choose us',
+                  onTap: () => context.go(WhyChooseUsView.routeName),
                 ),
                 SizedBox(width: 16),
                 // IconButton(
@@ -98,7 +105,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 void _launchWhatsApp() async {
-  final Uri whatsapp = Uri.parse("https://wa.me/+201113772808");
+  final Uri whatsapp = Uri.parse("https://wa.me/+201120919120");
   if (await canLaunchUrl(whatsapp)) {
     await launchUrl(whatsapp);
   } else {
@@ -248,12 +255,18 @@ class CustomDrawer extends StatelessWidget {
             //   icon: Icons.directions_bus_filled_outlined,
             //   title: 'Transportation',
             //   onTap: () => _navigateToTransportation(context),
-            // ),
+            // )
             _buildDrawerItem(
               context,
               icon: Icons.info_outline,
               title: 'About Us',
-              onTap: () => _scrollToFooter(context),
+              onTap: () => context.go(AboutUs.routeName),
+            ),
+            _buildDrawerItem(
+              context,
+              icon: Icons.info_outline,
+              title: 'Why Choose Us',
+              onTap: () => context.go(WhyChooseUsView.routeName),
             ),
           ],
         ),

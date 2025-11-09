@@ -21,11 +21,22 @@ class _TripCardState extends State<TripCard> {
 
     return GestureDetector(
       onTap: () {
+        // تحويل الـ title لـ URL-friendly format
+        final urlTitle = widget.tourModel.title
+            .toLowerCase()
+            .replaceAll(' ', '-')
+            .replaceAll(RegExp(r'[^\w\s-]'), ''); // إزالة الرموز الخاصة
         context.go(
-          PlaceDetailsView.routeName,
-          extra: widget.tourModel.toJson(),
+          '${PlaceDetailsView.routeName}/${widget.tourModel.id}/$urlTitle',
+          extra: widget.tourModel, // optional: للسرعة بدل ما تعمل API call
         );
       },
+
+      /*
+              final slug = slugify(widget.tourModel.title);
+        context.go('${PlaceDetailsView.routeName}/$slug');
+
+      */
       child: MouseRegion(
         onEnter: (e) {
           setState(() {

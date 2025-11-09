@@ -32,6 +32,7 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  late ScrollController _scrollController;
 
   bool _isBookingInProgress = false;
 
@@ -46,11 +47,23 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
       begin: 0,
       end: 1,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _scrollController = ScrollController();
+
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     _controller.forward();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          0.0,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
   }
 
   @override
@@ -59,6 +72,7 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
     _emailController.dispose();
     _phoneController.dispose();
     _hotelController.dispose();
+    _scrollController.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -353,6 +367,7 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
             return Stack(
               children: [
                 SingleChildScrollView(
+                  controller: _scrollController,
                   child: Column(
                     children: [
                       _buildHeroSection(
@@ -465,11 +480,6 @@ class PlaceDetailsViewBodyState extends State<PlaceDetailsViewBody>
                       children: [
                         _buildHeroStat("4.5", 'Rating', Icons.star),
                         _buildHeroStat(timeTour, 'Duration', Icons.access_time),
-                        _buildHeroStat(
-                          numberOfPeople,
-                          'Max Group',
-                          Icons.group,
-                        ),
                       ],
                     ),
                   ],

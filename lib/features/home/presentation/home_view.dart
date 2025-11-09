@@ -11,7 +11,6 @@ import 'package:tourist_website/features/home/presentation/manager/get_all_tours
 import 'package:tourist_website/features/home/presentation/lists/category_list_view.dart';
 import 'package:tourist_website/features/home/presentation/manager/get_categories/get_categories_cubit.dart';
 import 'package:tourist_website/features/home/presentation/widgets/cursor_slider.dart';
-import 'package:tourist_website/features/home/presentation/widgets/footer_section.dart';
 import 'package:tourist_website/features/home/presentation/widgets/home_appbar.dart';
 import 'package:tourist_website/features/home/presentation/widgets/how_pay_section.dart';
 import 'package:tourist_website/features/home/presentation/widgets/most_popular_grid_view.dart';
@@ -20,7 +19,7 @@ import 'package:tourist_website/features/place_detials/presentation/views/widget
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-  static const routeName = '/home';
+  static const routeName = '/';
   static late ScrollController globalScrollController;
 
   @override
@@ -56,134 +55,138 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(footerKey: _footerKey), // Use CustomAppBar
-      drawer: CustomDrawer(
-        footerKey: _footerKey,
-      ), // Add CustomDrawer for mobile
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create:
-                (context) => GetAllToursCubit(
-                  GetAllToursUseCase(
-                    GetAllToursRepoImpl(apiService: ApiService(Dio())),
-                  ),
-                )..getAllTours(),
-          ),
-          BlocProvider(
-            create:
-                (context) =>
-                    GetCategoriesCubit(ApiService(Dio()))..getCategories(),
-          ),
-        ],
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              controller: _scrollController,
-              physics: const AlwaysScrollableScrollPhysics(
-                parent: ClampingScrollPhysics(), // Smooth with no bounce
-              ),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: double.infinity),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: constraints.maxWidth > 960 ? 30 : 16,
-                        vertical: 16,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CustomCarouselSlider(cities: lst),
-                          const SizedBox(height: 20),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: constraints.maxWidth < 700 ? 0 : 30,
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Sharm El Sheikh Excursions & Tours & Best Things To Do',
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodyLarge?.copyWith(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Text(
-                                  "Explore Sharm el Sheikh and Egypt with Vova Tours. We are here to present you with a wide variety of excursions to and from sharm el sheikh, such as overday trips to Cairo, Luxor, Alexandria, Jerusalem, petra, quad biking, Dolphin show, Swimming with the dolphins",
-                                  style: TextStyle(
-                                    color: Color(0xFF8D9199),
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                CustomCategoryListView(),
-                                const SizedBox(height: 20),
-                                const Text(
-                                  "Explore Your Favorite Trips",
-                                  style: TextStyle(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-
-                                const SizedBox(height: 8),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Spacer(),
-                                    const AutoSizeText(
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      "Discover our most popular excursions",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xFF8D9199),
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    // TextButton(
-                                    //   onPressed: () {
-                                    //     setState(() {
-                                    //       seeAll = !seeAll;
-                                    //     });
-                                    //   },
-                                    //   child:
-                                    //       seeAll
-                                    //           ? Text("See Less")
-                                    //           : Text("See All"),
-                                    // ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                CustomMostPopularGridView(seeAll: seeAll),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+    return SelectableRegion(
+      focusNode: FocusNode(),
+      selectionControls: MaterialTextSelectionControls(),
+      child: Scaffold(
+        appBar: CustomAppBar(footerKey: _footerKey), // Use CustomAppBar
+        drawer: CustomDrawer(
+          footerKey: _footerKey,
+        ), // Add CustomDrawer for mobile
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create:
+                  (context) => GetAllToursCubit(
+                    GetAllToursUseCase(
+                      GetAllToursRepoImpl(apiService: ApiService(Dio())),
                     ),
-                    const SizedBox(height: 20),
-                    HowBookingSection(width: constraints.maxWidth),
-                    const SizedBox(height: 20),
-                    HowPaySection(width: constraints.maxWidth),
-                    const SizedBox(height: 20),
-                    ReviewsSection(width: constraints.maxWidth),
-                    const SizedBox(height: 20),
-
-                    KeyedSubtree(key: _footerKey, child: const Footer()),
-                  ],
+                  )..getAllTours(),
+            ),
+            BlocProvider(
+              create:
+                  (context) =>
+                      GetCategoriesCubit(ApiService(Dio()))..getCategories(),
+            ),
+          ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                controller: _scrollController,
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: ClampingScrollPhysics(), // Smooth with no bounce
                 ),
-              ),
-            );
-          },
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: double.infinity),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: constraints.maxWidth > 960 ? 30 : 16,
+                          vertical: 16,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomCarouselSlider(cities: lst),
+                            const SizedBox(height: 20),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: constraints.maxWidth < 700 ? 0 : 30,
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Sharm El Sheikh Excursions & Tours & Best Things To Do',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge?.copyWith(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  const Text(
+                                    "Explore Sharm el Sheikh and Egypt with Vova Tours. We are here to present you with a wide variety of excursions to and from sharm el sheikh, such as overday trips to Cairo, Luxor, Alexandria, Jerusalem, petra, quad biking, Dolphin show, Swimming with the dolphins",
+                                    style: TextStyle(
+                                      color: Color(0xFF8D9199),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  CustomCategoryListView(),
+                                  const SizedBox(height: 20),
+                                  const Text(
+                                    "Explore Your Favorite Trips",
+                                    style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Spacer(),
+                                      const AutoSizeText(
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        "Discover our most popular excursions",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF8D9199),
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      // TextButton(
+                                      //   onPressed: () {
+                                      //     setState(() {
+                                      //       seeAll = !seeAll;
+                                      //     });
+                                      //   },
+                                      //   child:
+                                      //       seeAll
+                                      //           ? Text("See Less")
+                                      //           : Text("See All"),
+                                      // ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 12),
+                                  CustomMostPopularGridView(seeAll: seeAll),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      HowBookingSection(width: constraints.maxWidth),
+                      const SizedBox(height: 20),
+                      HowPaySection(width: constraints.maxWidth),
+                      const SizedBox(height: 20),
+                      ReviewsSection(width: constraints.maxWidth),
+                      const SizedBox(height: 20),
+
+                      KeyedSubtree(key: _footerKey, child: const Footer()),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
